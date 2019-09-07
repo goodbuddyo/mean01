@@ -1,3 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+/* note: material recommends using a sass mixin for updates */
+
+.regCard {border:none;    margin: 2px 0 6px 0;}
+.regTitle {border:none;    margin: 2px 0 6px 0;}
+.regH5 {border:none;     margin: 2px 0 6px 0;}
+
+.mat-card.regCard { padding: 14px;}
+.regCard  .mat-form-field-appearance-legacy .mat-form-field-infix { padding: .2375em 0; }
+.regCard .mat-form-field { border:none; margin-right: 4px; }
+.regCard .mat-card-actions, .regCard .mat-card-content, .regCard .mat-card-subtitle, .regCard .mat-card-title {  margin-bottom: 6px; }
+
+
+.example-form { min-width: 150px; max-width: 600px; width: 100%;}
+.example-full-width { width: 96%; }
+.example-half-width { width: 47%;}
+
