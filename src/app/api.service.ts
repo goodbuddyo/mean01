@@ -16,6 +16,13 @@ export class ApiService {
     })
   }
 
+  getAllMessages() {
+    this.http.get<any>(this.path + '/allposts' ).subscribe(res => {
+      // console.log(res)
+      this.messages = res
+    })
+  }
+
   postMessage(message) {
     this.http.post(this.path + '/post', message).subscribe(res => {
     })

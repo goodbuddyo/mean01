@@ -9,7 +9,7 @@ import { OnInit } from '@angular/core'
     selector: 'messages',
     template: `
         <div *ngFor="let message of apiService.messages">
-          <mat-card>{{message.msg}}</mat-card>
+          <div>{{message.msg}}</div>
         </div>
     `
 })

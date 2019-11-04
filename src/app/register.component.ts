@@ -1,33 +1,43 @@
 import { Component } from '@angular/core'
 import { AuthService } from './auth.service'
-// import { ApiService } from './api.service'
+
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'register',
   template: `
-  <mat-card class="regCard">
-  <mat-card-title  class="regTitle"><h5 class="regH5">Register New User</h5> </mat-card-title>
-  <mat-card-content>
+
+  <div class="">
+
+    <div  class="regTitle"><h5 class="regH5">Register New User</h5> </div>
+
     <form class="example-form">
-    <mat-form-field class="example-half-width">
-      <input [(ngModel)]="registerData.email" name="email" matInput placeholder="email" type="email">
-    </mat-form-field>
-    <mat-form-field  class="example-half-width">
-      <input [(ngModel)]="registerData.pwd" name="password"  matInput  placeholder="password" type="password">
-    </mat-form-field>
+
+    <div class="form-group">
+      <label for="inputEmail_1">Email address</label>
+      <input [(ngModel)]="registerData.email" name="email" class="form-control" id="inputEmail_1"
+       aria-describedby="emailHelp" placeholder="Enter email"  autocomplete="on">
+      <small id="emailHelp" class="form-text text-muted">We do not share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword_1">Password</label>
+      <input [(ngModel)]="registerData.pwd" name="password" type="password" class="form-control" id="inputPassword_1"
+      placeholder="Password"  autocomplete="off">
+    </div>
+
     <br>
-    <mat-form-field  class="example-half-width">
-      <input [(ngModel)]="registerData.name" name="name"  matInput  placeholder="name">
-    </mat-form-field>
-  <br>
-  <mat-form-field class="example-full-width">
-    <textarea [(ngModel)]="registerData.description" name="description"  matInput  placeholder="description"></textarea>
-  </mat-form-field>
-<br>
-    <button (click)="post()" mat-raised-button class="regButton" color="primary">Register</button>
-    </form>
-  </mat-card-content>
-</mat-card>
+
+    <div class="form-group">
+      <label for="userName_1">User Name</label>
+      <input [(ngModel)]="registerData.name" name="name"  class="form-control" id="userName_1"
+      aria-describedby="usernameHelp" placeholder="User Name">
+      <small id="emailHelp" class="form-text text-muted">Go ahead, be creative</small>
+    </div>
+
+    <br>
+      <button (click)="post()" class="regButton btn btn-primary">Submit</button>
+      </form>
+  </div>
   `
   // templateUrl:'register.component.html'
 })
@@ -43,7 +53,6 @@ export class RegisterComponent {
 
   post() {
       console.log(this.registerData)
-      // this.apiService.sendUserRegistration(this.registerData)
       this.authService.registerUser(this.registerData)
   }
 }
@@ -51,6 +60,4 @@ export class RegisterComponent {
 
 
 
-// <mat-form-field>
-// <textarea  placeholder="Textarea" name="textarea01" matInput placeholder="text" type="text"></textarea>
-// </mat-form-field>
+

@@ -1,47 +1,43 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { ApiService } from './api.service'
 import { ActivatedRoute } from '@angular/router'
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'profile',
   template: `
-  <mat-card class="regCard">
-  <mat-card-title  class="regTitle"><h5 class="regH5">Profile</h5> </mat-card-title>
-  <mat-card-content>
+  <div class="postCard">
+    <h5 class="regH5">Profile</h5>  
 
-  <mat-list role="list">
-    <mat-list-item role="listitem">Name: {{profile?.name}}</mat-list-item>
-    <mat-list-item role="listitem">Details: {{profile?.description}}</mat-list-item>
-
-  </mat-list>
-
-  </mat-card-content>
-  </mat-card>
+    <div class="card-content">
+    <div class="card-content">Name: {{profile?.name}}</div>
+    <div class="card-content">Email: {{profile?.email}}</div>
+    <div class="card-content">Details: {{profile?.description}}</div>
+  </div>
 
 
-  <mat-card class="regCard">
-  <mat-card-title  class="regTitle"><h5 class="regH5">Posts</h5> </mat-card-title>
-  <mat-card-content>
+  
+  <div class="postCard">
+    <h5 class="regH5">Posts</h5> 
+  
+    <div class="card-content">
 
-    <messages></messages>
+      <messages></messages>
 
-  </mat-card-content>
-  </mat-card>
-
-
+    </div>
+  </div>
   `
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
 
     constructor(private apiService: ApiService, private route: ActivatedRoute) { }
 
     profile
 
     ngOnInit() {
-      let id = this.route.snapshot.params.id
+      const id = this.route.snapshot.params.id
       // console.log(id)
       this.apiService.getProfile(id).subscribe(data => this.profile = data)
-      // this.apiService.getProfile(id).subscribe(profile => console.log(profile.json()) )
   }
 
 }

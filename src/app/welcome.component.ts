@@ -1,16 +1,17 @@
 import { Component } from '@angular/core'
-import { ApiService } from './api.service'
 
 @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'welcome',
     template: `
-    <mat-card  class="postCard">
-      <mat-card-header>
-        <mat-card-title>
+    <div class="postCard">
+
           <h4>Welcome</h4>
-        </mat-card-title>
-      </mat-card-header>
-  </mat-card>
+          <p>
+          Below are some of the latest topics being discussed. Login to let others know your thoughts, 
+          or recommend a new topic or venue for discussion. </p>
+
+  </div>
     `
 })
 export class WelcomeComponent {

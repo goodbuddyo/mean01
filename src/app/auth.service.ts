@@ -15,6 +15,10 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY)
   }
 
+  testFunction() {
+    console.log('testFunction works!!')
+  }
+
   get isAuthenticated() {
     return !!localStorage.getItem(this.TOKEN_KEY)
   }

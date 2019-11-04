@@ -1,24 +1,30 @@
 import { Component } from '@angular/core'
 import { AuthService } from './auth.service'
-// import { ApiService } from './api.service'
+
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'login',
   template: `
-  <mat-card class="regCard">
-  <mat-card-title  class="regTitle"><h5 class="regH5">Login</h5> </mat-card-title>
-  <mat-card-content>
+  <div class="regCard">
+  <h5 class="regH5">Login</h5>
   <form>
-  <mat-form-field>
-    <input [(ngModel)]="loginData.email" name="email" matInput placeholder="email" type="email">
-  </mat-form-field>
-  <mat-form-field>
-   <input [(ngModel)]="loginData.pwd"  name="password"  matInput  placeholder="password" type="password">
-  </mat-form-field>
-  <button (click)="post()" mat-raised-button class="regButton" color="primary">Login</button>
+   <div class="form-group">
+   <label for="inputEmail_2">Email address</label>
+   <input [(ngModel)]="loginData.email" name="email" class="form-control" id="inputEmail_2"
+    aria-describedby="emailHelp" placeholder="Enter email"  autocomplete="on">
+   <small id="emailHelp" class="form-text text-muted">We do not share your email with anyone else.</small>
+ </div>
+ <div class="form-group">
+   <label for="inputPassword_2">Password</label>
+   <input [(ngModel)]="loginData.pwd" name="password" type="password" class="form-control" id="inputPassword_2"
+   placeholder="Password" autocomplete="off">
+ </div>
+  <br>
+    <button (click)="post()" class="regButton btn btn-primary">Login</button>
   </form>
-  </mat-card-content>
-  </mat-card>
+
+  </div>
   `
 })
 export class LoginComponent {
