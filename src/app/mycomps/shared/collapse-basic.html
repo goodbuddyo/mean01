@@ -1,0 +1,15 @@
+<p class="text-center collapseBtn">
+  <button type="button" class="btn btn-brown  mar12_0_0" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    About Regions
+  </button>
+</p>
+<div id="collapseExample" [ngbCollapse]="isCollapsed">
+  <div class="card">
+    <div class="card-body sfusRegions">
+      States are divided into regions to help narrow search results.
+      <br />
+      <a href="#">View region maps  »</a>.
+    </div>
+  </div>
+</div>

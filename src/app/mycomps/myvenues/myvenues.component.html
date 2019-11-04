@@ -1,0 +1,132 @@
+<div class=" sfusJumbo">
+  <div class="row sfusRow text-left">
+    <div class="col-12" >
+      <hr class="sfusHR" />
+      <h3 class="sfus_H"> Login To Recommend a Venue</h3>
+      <hr class="sfusHR" />
+    </div>
+    <div class="col-xs-12 col-md-6">
+
+      <!-- 4:3 aspect ratio -->
+      <div class="sfusVideo embed-responsive  embed-responsive-16by9">
+        <video class="responsive-video embed-responsive-item" poster="../assets/images/sportFansWhereVenue720.png" controls>
+          <source src="../assets/media/intro720p.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <p class="mar12_0_12_0">
+        Help improve the sports venue list by posting a comment or adding a recommendation 
+        for any great venues missing from the list. 
+      </p>
+
+
+    </div>
+    
+    <!--  ================================== Right Col ================================ -->
+    
+    <div class="col-xs-12 col-md-6">
+      
+      
+
+      <div class="sfusForm02" >
+        <form>
+          <div class="form-group">
+            <label for="VenueName01">Venue Name</label>
+            <input type="text" class="form-control" id="VenueName01" name="VenueName01" placeholder="Enter name">
+          </div>
+          
+          <div class="form-group">
+            <label for="Address01">Address</label>
+            <input type="text" class="form-control" id="Address01" name="Address01" placeholder="Enter address">
+          </div>
+          
+          <div class="row row-no-gutters sfusRow text-left">
+            <div class="col-8 div-no-rt-gutter">
+              <div class="form-group">
+                <label for="City01">City</label>
+                <input type="text" class="form-control" id="City01" name="City01" placeholder="Enter city">
+              </div>
+            </div>
+            <div class="col-4  div-no-left-gutter">
+              <div class="form-group">
+                <label for="Region01">State  </label>
+                <select class="form-control"  id="Region01" name="Region01">
+                  <option>CT-NE</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="Description01">Description</label>
+            <textarea class="form-control" id="Description01" name="Description01" placeholder="Details fans need to know: phone, hours, why it's great..." rows="4"></textarea>
+          </div>
+          
+          <div class="shareButton text-center mar12_0_12_0">
+            <a class="btn btn-lg btn-brown" href="#" role="button">Submit Venue</a>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row sfusRow text-left">
+    <div class="col-12">
+      <hr class="sfusHR" />
+      <h3 class="sfus_H"> Sport Venue List </h3>
+      
+      <hr class="sfusHR" />
+      
+      
+      
+      <form>
+        <div class="form-group form-inline">
+          Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+          <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+        </div>
+        <table class="table table-striped text-left">
+          <thead>
+            <tr>
+              <th scope="col"  class="sfusth">ID</th>
+              <th scope="col"  class="sfusth sortImg" sortable="name" (sort)="onSort($event)">Venue</th>
+              <th scope="col"  class="sfusth sortImg" sortable="area" (sort)="onSort($event)">Address</th>
+              <th scope="col"  class="sfusth sortImg" sortable="area" (sort)="onSort($event)">City</th>
+              <th scope="col"  class="sfusth sortImg" sortable="area" (sort)="onSort($event)">State</th>
+              <th scope="col"  class="sfusth" >Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let country of countries$ | async">
+              <th scope="row">{{ country.id }}</th>
+              <td>
+                <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px"> -->
+                <ngb-highlight [result]="country.vname" [term]="service.searchTerm"></ngb-highlight>
+              </td>
+              <td><ngb-highlight [result]="country.vaddress" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="country.vcity" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="country.vstate" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="country.mydetails" [term]="service.searchTerm"></ngb-highlight></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination
+          [collectionSize]="total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
+          </ngb-pagination>
+          <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+            <option [ngValue]="10">10 items per page</option>
+            <option [ngValue]="30">30 items per page</option>
+            <option [ngValue]="60">60 items per page</option>
+          </select>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+

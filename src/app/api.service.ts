@@ -15,7 +15,7 @@ export class ApiService {
       this.messages = res
     })
   }
-
+  // http://localhost:3000/allposts
   getAllMessages() {
     this.http.get<any>(this.path + '/allposts' ).subscribe(res => {
       // console.log(res)
@@ -36,7 +36,11 @@ export class ApiService {
     // may want to replace <any> with an interface with a property of token
 
   getProfile(id) {
-      return this.http.get(this.path + '/profile/' + id)
+    return this.http.get(this.path + '/profile/' + id)
+  }
+
+  getMyprofile(id) {
+    return this.http.get(this.path + '/myprofile/' + id)
   }
 
 }

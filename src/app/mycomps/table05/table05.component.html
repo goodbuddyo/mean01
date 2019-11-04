@@ -1,0 +1,83 @@
+
+<p>Table05:  simulates server calling with an observable async service to: fetch a list of countries, it also sorts, filters and has search and pagination. It has a simulated delay and a loading indicator. <br />
+  (These features should be removed when switching to actual server requests.)
+</p>
+
+<!--         
+<div class="text-left">
+  <br />
+  <p > 
+    <strong>Myposts</strong> is a copy of tabel05. <br /> 
+    <strong>Tabel05</strong> uses an observable to simulate fetching a list of countries with a delay and a loading indicator. 
+    It uses pagination, sorting, and filters (search) so myposts will be modified to pull server data.
+  </p>
+  <p> <strong>app.module</strong> imports: </p>
+  <ul>
+    <li>component NgbdTableComplete from <strong>/table05/table-complete.ts</strong> (& html) <br />
+    and NgbdSortableHeader from <strong>/table05/sortable.directive</strong>
+    </li>
+  </ul>
+  <p>  And these files import: </p>
+  <ul>
+    <li>./country.ts, ./countries.ts,  and ./sortable.directive.ts</li>
+  </ul>
+  <p> Since ./country, ./countries, are referenced from the current local directory (/myposts), 
+    they can be updated to suite the local table, but shared files such as:   <br />
+      /table05/table-complete.ts and  /table05/sortable.directive.table-striped 
+      <br />
+    will need to be copied/renamed if different features are needed for different tables. 
+    <br />
+  By updating table components (/myposts.component.ts and /country.service.ts) from import 
+  './sortable.directive allows' to 
+    '../table05/sortable.directive', this service file can be deleted locally (and shared from /table05)
+  </p>
+  <br />
+</div>
+-->
+
+<form>
+  <div class="form-group form-inline">
+      Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+      <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+  </div>
+
+  <table class="table table-striped text-left">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" sortable="name" (sort)="onSort($event)">Venue Name</th>
+      <th scope="col" sortable="area" (sort)="onSort($event)">Region</th>
+      <th scope="col" sortable="population" (sort)="onSort($event)">Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let country of countries$ | async">
+      <th scope="row">{{ country.id }}</th>
+      <td>
+        <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
+        <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
+      </td>
+      <td><ngb-highlight [result]="country.area | number" [term]="service.searchTerm"></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.population | number" [term]="service.searchTerm"></ngb-highlight></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
+    </ngb-pagination>
+
+    <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+
+      <option [ngValue]="10">10 items per page</option>
+      <option [ngValue]="30">30 items per page</option>
+      <option [ngValue]="60">60 items per page</option>
+    </select>
+  </div>
+
+</form>
+
+
+
+
